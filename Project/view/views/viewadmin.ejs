@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DataTables Search Example</title>
+  <style>
+         #textcolour{
+          width: 50%;
+          margin: 8px auto;
+          display: inline-block;
+          padding: 12px 4px;
+          border: 1px solid #ccc;
+          background-color: rgba(255, 255, 255, 1);
+          border-radius: 10px;
+        }
+        label {
+          font-size: 24px;
+          text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+          color: white;
+          font: 1.5em Georgia, serif;
+          display: inline-block;
+          vertical-align: middle;
+          width: 25%;
+          text-align: right;
+          margin-right: 1%;
+        }
+
+        #background {
+          background-color: rgb(41, 41, 41);
+          color: #fff;
+        }
+
+
+
+  </style>
+</head>
+  <body>
+    <div id ="background">
+        <br><br>
+        <label>Name: </label> <h1 id ="textcolour"><%=participants.name   %></h1><br>
+ 
+        <label>Email: </label><h1 id ="textcolour"><%=participants.email   %></h1><br>
+
+        <label>Mobile Number:  </label><h1 id ="textcolour">  <%=participants.mobile_no   %></h1>
+
+        <br><br>
+
+    </div>
+
+
+        
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My App</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			// Define the tabs and their corresponding content files
+			const tabs = {
+				'History': '/page1',
+				'Favorites': '/page2',
+				'Settings': '/settings'
+			};
+			
+			// Load the default tab on page load
+			loadTab('History');
+			
+			// Add click event listeners to the tabs
+			$('.tab').click(function() {
+				const tabName = $(this).text();
+				loadTab(tabName);
+			});
+			
+			// Load the content for the selected tab
+			function loadTab(tabName) {
+				const contentFile = tabs[tabName];
+				$('#main-content').load(contentFile);
+				$('.tab').removeClass('active');
+				$(`.tab:contains(${tabName})`).addClass('active');
+			}
+		});
+	</script>
+	<style>
+		/* Style the header */
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+		}
+		
+		/* Style the left sidebar */
+		.left-sidebar {
+			background-color: #eee;
+			float: left;
+			width: 25%;
+			height: 400px;
+			overflow-y: scroll;
+			padding: 10px;
+		}
+		
+		/* Style the tabs */
+		.tab {
+			cursor: pointer;
+			padding: 5px;
+			margin-bottom: 5px;
+			background-color: #ccc;
+			border-radius: 3px;
+			font-weight: bold;
+			color: #333;
+		}
+		
+		.tab.active {
+			background-color: #333;
+			color: #fff;
+		}
+		
+		/* Style the main content */
+		#main-content {
+			float: left;
+			width: 75%;
+			height: 400px;
+			padding: 10px;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>My App</h1>
+	</header>
+	
+	<div class="left-sidebar">
+		<div class="tab active">History</div>
+		<div class="tab">Favorites</div>
+		<div class="tab">Settings</div>
+	</div>
+	
+	<div id="main-content">
+		<!-- The main content will be loaded dynamically based on the selected tab -->
+	</div>
+	
+</body>
+</html>

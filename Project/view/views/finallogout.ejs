@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logout</title>
+</head>
+<body>
+  <h1>You have been logged out.</h1>
+
+  <script>
+    // Reload the page after a short delay
+    window.onload = function() {
+      setTimeout(function() {
+        window.location.href = '/login';
+      }, 1000); // Reload after the specified delay (in milliseconds)
+    };
+  </script>
+</body>
+</html>

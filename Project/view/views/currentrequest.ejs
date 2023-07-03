@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DataTables Search Example</title>
+    <style>
+    #example tbody tr{
+       background-color: #333;
+       color: #fff;
+    }
+
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <h1>DataTables Search Example</h1>
+
+    <table id="example" class="table table-dark">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody >
+        <%  for (let i = 0; i < participants.length; i++) { %>
+          <tr>
+
+            <td><%= participants[i].id %></td>
+            <td><%= participants[i].name %></td>
+            <td> <%= participants[i].email %></td> 
+            <td><%= participants[i].mobile_no %></td>
+            <td>
+                <input type="hidden" name="id" id="<%= participants[i].id %>" value="">
+                <button class="view-granted" data-id="<%= participants[i].id %>">View Granted</button>
+             
+            </td>            
+          </tr>
+        <% } %>
+      </tbody>
+      <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable();
+            $('#search-input').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+
+      </script>
+      <script>
+        $('.view-granted').click(function() {
+          const id = $(this).data('id');
+          $.ajax({
+            url: '/currentrequest',
+            type: 'POST',
+            data: { id: id },
+            success: function(data) {
+              $('#main-content').html(data);
+            },
+            error: function(xhr, status, error) {
+              console.log('Error:', error);
+            }
+          });
+        });
+    </script>
+    </table>
+  </body>
+
+</html>

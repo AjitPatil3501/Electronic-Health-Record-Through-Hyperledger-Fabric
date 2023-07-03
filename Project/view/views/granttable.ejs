@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DataTables Search Example</title>
+    <style>
+    #example tbody tr{
+       background-color: #333;
+       color: #fff;
+    }
+
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <h1>DataTables Search Example</h1>
+
+    <table id="example" class="table table-dark">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody >
+        <% for (let i = 0; i < participants.length; i++) { %>
+          <tr>
+
+            <td><%= participants[i].Key %></td>
+            <td><%= participants[i].name %></td>
+            <td><%= participants[i].email %></td>
+            <td><%= participants[i].mobile_no %></td>
+            <td>
+              <form action="/granttable" method="POST">
+                <input type="hidden" name="key" value="<%= participants[i].Key %>">
+                <button type="submit" class="btn btn-info">Grant</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+      <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable();
+            $('#search-input').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+
+      </script>
+    </table>
+  </body>
+
+</html>

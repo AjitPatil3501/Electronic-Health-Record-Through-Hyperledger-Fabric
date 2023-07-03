@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>DataTables Search Example</title>
+    <style>
+    #example tbody tr{
+       background-color: #333;
+       color: #fff;
+    }
+
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <h1>DataTables Search Example</h1>
+
+    <table id="example" class="table table-dark">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+        </tr>
+      </thead>
+      <tbody >
+        <% let j=1; for (let i = 0; i < participants.length; i++) { %>
+          <tr>
+
+            <td><%= j %></td>
+            <td><%= participants[i].name %></td>
+            <td><%= participants[i].email %></td>
+            <td><%= participants[i].mobile_no %></td>
+          </tr>
+        <% j++} %>
+      </tbody>
+      <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable();
+            $('#search-input').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+
+      </script>
+    </table>
+  </body>
+
+</html>
